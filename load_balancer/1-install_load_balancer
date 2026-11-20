@@ -6,9 +6,9 @@ apt-get update -y
 apt-get install -y haproxy
 
 # Enable HAProxy init script execution
-sudo sed -i 's/^ENABLED=0/ENABLED=1/' /etc/default/haproxy
+sed -i 's/^ENABLED=0/ENABLED=1/' /etc/default/haproxy
 
-# Write HAProxy configuration file
+# Write HAProxy configuration file using standard web-01 and web-02 hostnames
 cat << 'EOF' > /etc/haproxy/haproxy.cfg
 global
 	log /dev/log	local0
@@ -34,8 +34,8 @@ frontend haproxy_frontend
 
 backend haproxy_backend
     balance roundrobin
-    server 7251-web-01 18.132.14.142:80 check
-    server 7251-web-02 <18.132.14.142>:80 check
+    server web-01 web-01:80 check
+    server web-02 web-02:80 check
 EOF
 
 # Restart HAProxy service
