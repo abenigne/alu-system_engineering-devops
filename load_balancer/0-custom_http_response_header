@@ -1,7 +1,15 @@
 #!/usr/bin/env bash
-# Installs Nginx and adds a custom X-Served-By header containing the server hostname
-sudo apt-get -y update
-sudo apt-get -y install nginx
-echo "add_header X-Served-By \$hostname;" | sudo tee /etc/nginx/conf.d/custom_header.conf > /dev/null
-sudo nginx -t
-sudo service nginx restart
+# Installs Nginx and adds a custom X-Served-By response header containing the server hostname
+# shellcheck disable=SC2154
+
+apt-get update -y
+apt-get install -y nginx
+
+# Home page so the server answers with 200
+echo "Hello World!" > /var/www/html/index.html
+
+# Add the header at the http level (idempotent: the file is overwritten, never appended)
+echo "add_header X-Served-By $(hostname);" > /etc/nginx/conf.d/custom_header.conf
+
+# Validate config, then restart so it takes effect
+nginx -t && service nginx restart
