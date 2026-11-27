@@ -1,77 +1,30 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>404 - Ceci n'est pas une page</title>
+<title>404 - Page not found</title>
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    font-family: "Segoe UI", Arial, sans-serif;
-    color: #fff;
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-    overflow: hidden;
-  }
-  .stars { position: fixed; inset: 0; z-index: 0; }
-  .stars span {
-    position: absolute;
-    width: 3px; height: 3px;
-    background: #fff;
-    border-radius: 50%;
-    animation: twinkle 3s infinite ease-in-out;
-  }
-  @keyframes twinkle { 0%,100% { opacity: .2; } 50% { opacity: 1; } }
-  .content { position: relative; z-index: 1; padding: 20px; }
-  h1 {
-    font-size: clamp(6rem, 22vw, 14rem);
-    letter-spacing: .05em;
-    background: linear-gradient(90deg, #e94560, #f9a826);
-    -webkit-background-clip: text;
-    background-clip: text;
-    color: transparent;
-    animation: float 4s infinite ease-in-out;
-  }
-  @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-  .astronaut { font-size: 4rem; display: inline-block; animation: spin 8s linear infinite; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  h2 { font-size: 1.8rem; margin: 10px 0; font-weight: 300; }
-  p { opacity: .8; margin-bottom: 30px; }
-  a {
-    display: inline-block;
-    padding: 12px 32px;
-    border-radius: 30px;
-    background: #e94560;
-    color: #fff;
-    text-decoration: none;
-    font-weight: 600;
-    transition: transform .2s, box-shadow .2s;
-  }
-  a:hover { transform: scale(1.08); box-shadow: 0 0 20px #e94560; }
+  body { margin: 0; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 16px; box-sizing: border-box; background: #14213d; color: #fff; font-family: Verdana, sans-serif; }
+  svg { width: min(320px, 80vw); animation: walk 2s ease-in-out infinite alternate; }
+  h1 { font-size: 4rem; margin: 12px 0 0; color: #fca311; }
+  p { margin: 8px; }
+  a { margin-top: 16px; padding: 10px 22px; border-radius: 24px; background: #fca311; color: #14213d; text-decoration: none; font-weight: bold; }
+  @keyframes walk { from { transform: translateX(-30px) rotate(-3deg); } to { transform: translateX(30px) rotate(3deg); } }
 </style>
 </head>
 <body>
-  <div class="stars" id="stars"></div>
-  <div class="content">
-    <h1>404</h1>
-    <div class="astronaut">🧑‍🚀</div>
-    <h2>Ceci n'est pas une page</h2>
-    <p>You drifted into empty space. The page you wanted doesn't exist.</p>
-    <a href="/">Take me home</a>
-  </div>
-  <script>
-    var s = document.getElementById("stars");
-    for (var i = 0; i < 80; i++) {
-      var d = document.createElement("span");
-      d.style.left = Math.random() * 100 + "%";
-      d.style.top = Math.random() * 100 + "%";
-      d.style.animationDelay = Math.random() * 3 + "s";
-      s.appendChild(d);
-    }
-  </script>
+  <svg viewBox="0 0 200 220" role="img" aria-label="A lost sheet of paper walking away">
+    <path d="M45 20h80l30 30v120H45z" fill="#fff"/>
+    <path d="M125 20v30h30z" fill="#cfd6e6"/>
+    <circle cx="82" cy="85" r="7" fill="#14213d"/>
+    <circle cx="118" cy="85" r="7" fill="#14213d"/>
+    <path d="M82 125q18-16 36 0" fill="none" stroke="#14213d" stroke-width="5" stroke-linecap="round"/>
+    <path d="M75 170v30h-14M125 170v30h14M45 110l-24 20M155 110l24-20" fill="none" stroke="#fca311" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  <h1>404</h1>
+  <p><strong>Ceci n'est pas une page</strong></p>
+  <p>This page wandered off to learn something new.</p>
+  <a href="/">Take me home</a>
 </body>
 </html>
